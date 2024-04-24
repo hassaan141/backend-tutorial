@@ -1,0 +1,25 @@
+1. initialize the project with npm
+    express install
+
+2. setting up parsers for from
+  *done
+  *app.use(express.json())
+  *app.use(express.urlencoded({extended: true}))
+
+3. setting up ejs for ejs pages
+    *Ejs is just like HTML but you can do dynamic tasks like <h1> 2+2 <h1/> will return 4
+    *Do npm i ejs to install
+    *Setup ejs as a view engine
+    *Created a views folder and finsihed creating ejs, and rendered them
+
+4. setting up public static files
+  *DONE, also added tailwind css
+
+5. dynamic routing. What is it. How to take data coming from frontend to backend.
+  *No need to make different routes, for small changes
+  *First go to the browser, enter the url
+  *Realize what part is dynamic, and then put a colon beside it
+
+
+
+

@@ -171,3 +171,63 @@ app.get('/add', (req, res)=>{
 
 app.listen(3000)
 
+//Middleware
+
+//If you want to confrim anything before the route, use middelware
+//communicates between req and res
+
+//goes frontend, backend, frontend. First type the url, then the backend sends back information to the frontend
+
+//error handles 
+//go to express handles for error handles and search up documentation
+//so your code doesnt break and still continous
+
+//Video 5
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//npm i cookie-parser
+
+//sessions and cookies
+
+//when something asks you to log in and remembers you
+//We save as string with the data and send it too your server
+//In the frontend, we call this a cookie, and when you are loged in with the string, you are in a session.
+
+//Cookie is data saved on your frontend
+
+//from where you log in to log out, it is called a session
+
+// const express = require ('express')
+// const app = express()
+
+// app.use((req, res, next)=>{
+//   console.log('middleware');
+//   next();
+// });
+
+// app.get('/', (req, res)=>{
+//   res.send("Helloghghjgjhg World")
+// })
+
+// app.get('/add', (req, res)=>{
+//   res.send('Fat monkeying')
+// })
+
+// app.listen(3000)
+
+//A session is from where you log in till where you log out
+
+
+//use middleware
+
+//app.use(express.json())
+//app.use(express.urlencoded({extended: true}))
+
+//when you try to log in, it changes the infomration you send to a blob, which is an unreadable string. It is a stream
+
+//a stream is everything on your browser jumbled up, which is a blob
+
+//app.use(express.json()), this makes the data readable
+
+//the data is sent in a url format use /app.use(express.urlencoded({extended: true})) when its a json, use the up
