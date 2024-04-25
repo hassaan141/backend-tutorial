@@ -24,6 +24,12 @@ app.post('/create', (req, res)=>{
     })
 })
 
+app.get('/file/:filename', (req, res)=>{
+  fs.readFile(`./files/${req.params.filename}`, "utf-8", (err, filedata)=>{
+    res.render('readmore', {filedata: filedata, filename: req.params.filename});
+  })
+})
+
 app.listen(3000, ()=>{
   console.log('Server is running away');
 })
