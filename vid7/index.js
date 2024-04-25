@@ -16,7 +16,6 @@ app.get('/', (req, res)=>{
 })
 
 app.post('/create', (req, res)=>{
- console.log(req.body);
  fs.writeFile(`./files/${req.body.title.replaceAll(' ', '')}.txt`, 
     req.body.body, 
     (err)=>{
@@ -29,6 +28,18 @@ app.get('/file/:filename', (req, res)=>{
     res.render('readmore', {filedata: filedata, filename: req.params.filename});
   })
 })
+
+app.get('/edit/:filename', (req, res)=>{
+  res.render(`edit`, {filename: req.params.filename})
+})
+
+app.post('/edit/:filename', (req, res)=>{
+  console.log(req.body);
+  fs.rename(`./files/${req.body.previous}`,`./files/${req.body.new}`, (err)=>{
+    res.redirect('/')
+  } )
+})
+
 
 app.listen(3000, ()=>{
   console.log('Server is running away');

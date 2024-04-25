@@ -1,0 +1,30 @@
+Data Storages
+  Something where we can store the info for all the Storages
+  file- data.txt
+  database can store anything, mp4, images, gifs
+
+
+Types Of DBS
+  SQL- data is organized in tables, columns and rows
+  NoSQL- data is stored and objects: MongoDB
+
+What and Why
+  To store data
+  DB is backend
+  Backend is 2 things, application server and a database
+  Application server handles everything, if it needs something from the DB, it sends a request to the DB to get the info
+  If there is a part of a DB that has mulitple childrens, they are called collections
+  Collection is a grouping of MongoDB documents
+
+  Database -> Collections -> document
+
+  ------------------------------------
+
+  Code                      Database
+------------------------------------------
+mongoose.connect ->         databse
+model create ->             collection
+CREATE code ->                   DATABASE
+
+terminologies- collections, documents, schemas, keys, modals
+
