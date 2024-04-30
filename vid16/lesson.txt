@@ -1,0 +1,1 @@
+embedding is when you have data in the same place and you are calling it to two different places
