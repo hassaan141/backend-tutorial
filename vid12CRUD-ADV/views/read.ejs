@@ -10,15 +10,24 @@
 <body>
   <div class="w-full h-full bg-zinc-900 p-10 text-white">
     <div class="users flex gap-3 flex-wrap">
-      <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
-        <div class="w-full h-52 rounded-lg bg-zinc-600"></div>
-        <h3 class="text-xl mt-3 tracking-tigher">Muhammad Farooqi</h3>
-        <h5 class=" text-zinc-500 tracking-tigher">hassaan2000@gmail.com</h5>
-        <div class="flex gap-3 mt-10">
-          <a class="text-zinc-200" href="/update">Edit User</a>
-          <a class="text-red-500" href="/delete">Delete User</a>
+
+      <% user.forEach((val)=>{%>
+        <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
+          <div class="w-full h-52 rounded-lg bg-zinc-600 overflow-hidden">
+            <img class="w-full h-full object-cover" src="<%= val.image%>" alt="">
+          </div>
+          <h3 class="text-xl mt-3 tracking-tigher"><%= val.name%></h3>
+          <h5 class=" text-zinc-500 tracking-tigher"><%= val.email%></h5>
+          <div class="flex gap-3 mt-10">
+            <a class="text-zinc-200" href="/update/<%= val._id%>">Edit User</a>
+            <a class="text-red-500" href="/delete/<%= val._id%>">Delete User</a>
+          </div>
         </div>
-      </div>
+
+      <%})%>
+      
+      
+      
     </div>
   
   </div>

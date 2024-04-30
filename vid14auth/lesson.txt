@@ -1,0 +1,92 @@
+authentication and athorization
+
+need to give a profile
+
+you need admin rights for you to auth all tasks. Need auth for changes
+
+the server forgets everytime who are you, so it asks for auth everytime a new requrest is sent
+
+to get past this, there are cookies and sessions 
+
+the way cookies work is that when you request, it sends back the data and attaches a string with it, so when you request again, you send the string again so the server knows it is you
+
+need to understand 2 concepts
+
+1. how to setup cookies
+2. how to use cookies for password encryption and decryption
+3. how to store data in jwt 
+
+cookies travel between routes
+
+
+
+1. Cookie Parser
+
+ const cookieParser = require('cookie-parser')
+const express = require('express')
+const app = express()
+
+app.use(cookieParser());
+
+app.get('/', (req, res)=>{
+  res.cookie("name", "harsh")
+  res.send('done')
+})
+
+app.get('/read', (req, res)=>{
+  console.log(req.cookies);
+  res.send('read')
+})
+
+app.listen(3000, ()=>{
+  console.log("Server is running");
+})
+
+2. Bcrypt 
+
+Your password gets put through an algorithim which changes it. Use bcrypt for this
+
+This is what encrypts your password
+
+  const express = require('express')
+  const app = express()
+  const bcrypt = require('bcrypt')
+
+
+  app.get('/', (req, res)=>{
+    bcrypt.genSalt(10, (err, salt)=>{
+      bcrypt.hash("password", salt, (err, hash)=>{ //your first param is your password, second is salt, which is a random string, hash is the long string that you password becomes
+        res.send(hash)
+      })
+    })
+
+  })
+
+
+  app.listen(3000, ()=>{
+    console.log("Server is running");
+  })
+
+Now for decryption 
+
+const express = require('express')
+const app = express()
+const bcrypt = require('bcrypt')
+
+//$2b$10$bhgpHihuLnN.IjudavOhQehSPbF4WIh6xrxuOIvXKPXFFPwvPuzlK
+app.get('/', (req, res)=>{
+
+  bcrypt.compare('password', "$2b$10$bhgpHihuLnN.IjudavOhQehSPbF4WIh6xrxuOIvXKPXFFPwvPuzlK", (err, result)=>{
+    res.send(result);
+  })
+
+})
+
+//When we create an account, we encrpyt the password and store that in the db, we then see if the same password and encrypt is the same
+app.listen(3000, ()=>{
+  console.log("Server is running");
+})
+
+When we create an account, we encrpyt the password and store that in the db, we then see if the same password and encrypt is the same
+
+3. JWT 
