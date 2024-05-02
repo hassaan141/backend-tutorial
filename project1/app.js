@@ -30,6 +30,34 @@ app.get('/profile', isLoggedIn, async (req, res)=>{
   res.render("profile", {user: user})
 })
 
+app.get('/like/:id', isLoggedIn, async (req, res)=>{
+  let post = await postModel.findOne({_id: req.params.id}).populate("user") 
+  
+
+  if (post.likes.indexOf(req.user.userid)=== -1){
+    post.likes.push(req.user.userid)
+  } else{
+    post.likes.splice(post.likes.indexOf(req.user.userid), 1)
+  }
+
+  await post.save()
+  res.redirect("/profile")
+})
+
+app.get('/edit/:id', isLoggedIn, async (req, res)=>{
+  let post = await postModel.findOne({_id: req.params.id}).populate("user") 
+  console.log(post.content);
+  res.render("editPage", {post: post})
+
+})
+
+app.post('/update/:id', isLoggedIn, async (req, res)=>{
+  let post = await postModel.findOneAndUpdate({_id: req.params.id}, {content: req.body.content}) 
+
+  res.redirect("/profile")
+
+})
+
 app.post('/post', isLoggedIn, async (req, res)=>{
   const {content} = req.body
   let user = await userModel.findOne({email: req.user.email})
