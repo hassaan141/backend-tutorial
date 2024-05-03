@@ -15,9 +15,9 @@ app.get('/', (req, res)=>{
 
 app.get('/create', async (req, res)=>{ //this is how u create a user model
   let createdUser = await userModel.create({ //this blcok is code is async
-    name: "Muhammad", 
-    username: "hassaan141",
-    email: "has@gmail.com"
+    name: "Muhammfdsfad", 
+    username: "hasdfsdssaan141",
+    email: "has@gmdsfsdail.com"
 
   })
 
@@ -52,6 +52,6 @@ app.get('/delete', async (req, res)=>{ //this is how u create a user model
 
 })
 
-app.listen(3000, ()=>{
+app.listen(3001, ()=>{
   console.log("Dont Run Away");
 })

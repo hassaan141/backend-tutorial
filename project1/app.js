@@ -27,7 +27,11 @@ app.get('/login', (req, res)=>{
 app.get('/profile', isLoggedIn, async (req, res)=>{
   let user = await userModel.findOne({email: req.user.email}).populate("posts") 
  //posts is the array we are populating when we create a new post
-  res.render("profile", {user: user})
+ let publicProf = await postModel.find();
+ console.log(publicProf)
+ console.log(req.user);
+ console.log(user);
+  res.render("profile", {user: user, publicProf: publicProf})
 })
 
 app.get('/like/:id', isLoggedIn, async (req, res)=>{
@@ -97,7 +101,7 @@ app.post('/register', async (req, res)=>{
       })
       let token = jwt.sign({email: email, userid: user._id}, "secret")
       res.cookie("token", token)
-      res.send("User is registered")
+      res.redirect("/profile")
     })
   })
 })
