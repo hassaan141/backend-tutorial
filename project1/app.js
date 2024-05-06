@@ -6,7 +6,9 @@ const cookieParser = require('cookie-parser');
 const path = require('path')
 const userModel = require('./models/user')
 const postModel = require('./models/post');
-const { log } = require('console');
+const crypto = require("crypto")
+const multer = require("multer")
+const upload = require('./config/multerConfig')
 
 app.use(cookieParser())
 app.use(express.json())
@@ -14,9 +16,22 @@ app.use(express.urlencoded({extended: true}))
 app.set("view engine", "ejs")
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.get('/', (req, res)=>{
   res.render("index")
 
+})
+
+app.get('/profile/upload', (req, res)=>{
+  res.render("profileupload")
+
+})
+
+app.post('/upload', isLoggedIn, upload.single("images"), async (req, res)=>{ //put upload.single() and inside put the name of your field, in our case it is image
+  console.log(req.file);
+  let user = await userModel.findOne({email: req.user.email})
+  user.profilepic = req.file.filename
+  res.redirect("/profile")
 })
 
 app.get('/login', (req, res)=>{
