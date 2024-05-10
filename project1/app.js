@@ -22,9 +22,15 @@ app.get('/', (req, res)=>{
 
 })
 
-app.get('/profile/upload', (req, res)=>{
+app.get('/profile/upload', isLoggedIn, (req, res)=>{
   res.render("profileupload")
 
+})
+
+app.get('/explore', async (req, res)=>{
+  const allPost = await postModel.find()
+  console.log(allPost);
+  res.render("expolore", {allPost: allPost})
 })
 
 app.post('/upload', isLoggedIn, upload.single("images"), async (req, res)=>{ //put upload.single() and inside put the name of your field, in our case it is image
