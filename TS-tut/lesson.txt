@@ -1,0 +1,125 @@
+TS is a superscipt of JS
+
+In typescirpt, you have to define your variable types
+  Ex:
+     let name:string;
+     let age:number;
+     let isTrue:boolean;
+     
+  For defining an array, you have to specify the type of the array
+
+    let hobbies:string[];
+    let ages:numbers[];
+
+  For defining tupeles, which are immutable ordered collection of elements with the variable type defined for each index
+
+    let role:[number, string, boolean]
+
+  There are 2 ways of creating an object.
+
+    1. let person:Object
+
+    2. type Person ={
+        name: string,
+        age: number
+
+      }
+
+      let person:Person={
+        name: "Has",
+        age: 2,
+      }
+  
+  When making objects this way, you need to assing values to all of the properties within the object, if you dont want to, you can also do this.
+
+      type Person ={
+        name: string,
+        age?: number
+
+      }
+
+      This makes it so that the age varaibel does not need to be filled out.
+
+      let personList: Person[]
+
+  To contain more than one variable type, you need union
+
+      let age: string | number; 
+
+
+  For Functions, you need to do this
+
+      function printName(name: string){
+
+      }
+
+
+  To properly define a function
+
+      let printname:(name:string)=>void;
+
+   void is the return type that returns undefined, can also return number, string, boolean.
+
+      let printname:(name:string)=>number;
+      let printname:(name:string)=>string;
+
+    if you want to return nothing, can type never 
+
+        let printname:(name:string)=>never;
+
+
+  To give a variable any type,
+
+      let name: any;
+
+  Better than any, you can give the unknown keyword for the return
+
+      let name:unknown;
+
+
+  Objects, Classes and Extends
+
+
+  type is an alias, can also use interface
+
+      type Person={
+      name:string,
+      age?: number;
+    }
+
+
+    interface People{
+      name:string,
+      age?: number;
+    }
+
+  type can be extended  to use in different objects.
+
+    type A={
+      u:string,
+      v?: number;
+    }
+
+    type B = A &{
+      w: string,
+      y: number
+    }
+
+  For extending using interface
+
+    interface Cat extends People{
+      a: string,
+      b: number,
+    }
+
+  Or you can do, this with type
+
+    interface Person extends X {
+        name, 
+        string
+
+    }
+
+
+
+
