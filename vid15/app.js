@@ -67,7 +67,7 @@ app.post('/login', async (req, res)=>{
 
   })
 })
-
+//this is how you run the server
 app.listen(3000, ()=>{
   console.log("Server is running");
 })
