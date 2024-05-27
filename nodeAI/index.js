@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const { CohereClient } = require('cohere-ai');
+require('dotenv').config();
 
 
 app.use(express.json());
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.get("/test", async (req, res) => {
   const generate = await cohere.generate({
-    prompt: 'What is a v6?',
+    prompt: 'Can you put a v8 engine on a wheelchair?',
   });
 
   res.json({message: generate.generations[0].text});
