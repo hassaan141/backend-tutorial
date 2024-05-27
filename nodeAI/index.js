@@ -41,10 +41,10 @@ app.get("/", (req, res) => {
 
 app.get("/test", async (req, res) => {
   const generate = await cohere.generate({
-    prompt: 'Who invented the bike?',
+    prompt: 'What is a v6?',
   });
 
-  res.send(generate.generations[0].text);
+  res.json({message: generate.generations[0].text});
  
 });
 

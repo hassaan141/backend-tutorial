@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cohere-ai": "^7.10.1"
+    "cohere-ai": "^7.10.1",
+    "cors": "^2.8.5"
   }
 }
