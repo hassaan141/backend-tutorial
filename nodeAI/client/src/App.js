@@ -2,14 +2,16 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Enter your question</h1>
-      <div>
+    <div className="bg-zinc-800 min-h-screen text-white flex justify-center items-center">
+      <div className=''>
+      <h1 className='text-3xl mb-10'>Enter your question</h1>
+      <div className='gap-3'>
         <form action="https://localhost:3002/test" method="post">
-          <input type="text" name="" id="" />
+          <input type="text" name="" id="" className='text-black w-700'/>
+          <button className='bg-blue-400 px-20 rounded-md ml-6' type='sumbit'>Ask ChatGGG</button>
         </form>
       </div>
-      <button className="btn btn-primary">Primary Button</button>
+      </div>
     </div>
   );
 }
