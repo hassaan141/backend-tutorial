@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/test", async (req, res) => {
+  const ask = req.body.params
+  console.log(questions)
   const generate = await cohere.generate({
     prompt: 'Can you put a v8 engine on a wheelchair?',
   });
