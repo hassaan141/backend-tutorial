@@ -18,7 +18,7 @@ app.get("/test", async (req, res) => {
   const ask = req.body.params
   console.log(questions)
   const generate = await cohere.generate({
-    prompt: 'Can you put a v8 engine on a wheelchair?',
+    prompt: 'is a v2 engine strong enough to build a small airplane?',
   });
 
   res.json({message: generate.generations[0].text});
