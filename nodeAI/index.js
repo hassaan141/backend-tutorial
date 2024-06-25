@@ -3,8 +3,8 @@ const app = express();
 const { CohereClient } = require('cohere-ai');
 require('dotenv').config();
 
-
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const cohere = new CohereClient({
   token: process.env.COHERE_API
@@ -14,15 +14,15 @@ app.get("/", (req, res) => {
   res.send("Test a message");
 });
 
-app.get("/test", async (req, res) => {
-  const ask = req.body.params
-  console.log(questions)
+app.post("/test", async (req, res) => { // Change to POST
+  const ask = req.body.question; // Access the question from the parsed body
+  console.log(ask);
+
   const generate = await cohere.generate({
-    prompt: 'is a v2 engine strong enough to build a small airplane?',
+    prompt: ask, // Use the question in the prompt
   });
 
-  res.json({message: generate.generations[0].text});
- 
+  res.json({ message: generate.generations[0].text });
 });
 
 app.listen(3002, () => {
