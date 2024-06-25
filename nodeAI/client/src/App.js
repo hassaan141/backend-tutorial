@@ -2,18 +2,36 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [question, setQuestion] = useState('');
+  const [response, setResponse] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch('http://localhost:3002/test', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ question })
+    });
+
+    const resData = await res.json();
+    setResponse(resData.message);
+  };
 
   return (
     <div className="bg-zinc-800 min-h-screen text-white flex justify-center items-center">
       <div>
         <h1 className='text-3xl mb-10'>Enter your question</h1>
         <div className='gap-3'>
-          <form action="http://localhost:3002/test" method="post">
+          <form onSubmit={handleSubmit}>
             <input 
               type="text" 
               name="question" 
               id="question" 
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
               className='text-black w-700 h-200 rounded-md border-1'
             />
             <button 
@@ -24,6 +42,13 @@ function App() {
             </button>
           </form>
         </div>
+
+        {response && (
+          <div className='mt-10'>
+            <h2 className='text-2xl'>Response:</h2>
+            <p className='text-xl'>{response}</p>
+          </div>
+        )}
       </div>
     </div>
   );
