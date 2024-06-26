@@ -45,7 +45,6 @@ function App() {
 
         {response && (
           <div className='mt-10'>
-            <h2 className='text-2xl'>Response:</h2>
             <p className='text-xl'>{response}</p>
           </div>
         )}
