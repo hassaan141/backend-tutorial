@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 function App() {
   const [question, setQuestion] = useState('');
+  const [something, setSomgthing] = useState('');
+
   const [response, setResponse] = useState('');
 
   const handleSubmit = async (e) => {
@@ -38,7 +40,7 @@ function App() {
               className='bg-blue-400 px-20 rounded-md ml-6 text-xl' 
               type='submit'
             >
-              Ask ChatGGG
+              Ask ChatGG
             </button>
           </form>
         </div>
