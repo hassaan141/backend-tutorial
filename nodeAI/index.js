@@ -11,7 +11,7 @@ const cohere = new CohereClient({
 });
 
 app.get("/", (req, res) => {
-  res.send("Test a message");
+  res.send("Please work");
 });
 
 app.post("/test", async (req, res) => { // Change to POST
