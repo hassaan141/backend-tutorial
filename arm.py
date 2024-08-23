@@ -6,7 +6,7 @@ cap = cv.VideoCapture(0)
 
 #Using media pipe to create a mp_hands object
 mp_hands = mp.solutions.hands
-#Creating an instint from the mediapipe 
+#Creating an instance from the mediapipe 
 hand = mp_hands.Hands()
 
 while True:
