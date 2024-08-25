@@ -43,7 +43,7 @@ import pyfirmata2
 
 
 board = pyfirmata2.Arduino("COM4")
-servo = board.get_pin("d:3:p")
+servo = board.get_pin("d:11:p")
 
 cap = cv.VideoCapture(0)
 # Using MediaPipe to create an mp_hands object
@@ -82,3 +82,6 @@ while True:
 
 cap.release()  # Release the camera
 cv.destroyAllWindows()
+
+
+
