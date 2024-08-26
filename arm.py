@@ -77,7 +77,7 @@ while True:
 
         flipped_frame = cv.flip(frame, 1)  # Flip horizontally for a mirror effect
         cv.imshow("Cam", flipped_frame)
-        if cv.waitKey(1) == ord('d'):
+        if cv.waitKey(1) == ord('a'):
             break
 
 cap.release()  # Release the camera
