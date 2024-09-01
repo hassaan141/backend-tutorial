@@ -48,7 +48,8 @@ import time
 
 # Set up the Arduino board and servo
 board = pyfirmata2.Arduino("COM6")
-servo1 = board.get_pin("d:11:p")
+servo0 = board.get_pin("d:11:p")
+servo1 = board.get_pin("d:10:p")
 servo2 = board.get_pin("d:3:p")
 servo3 = board.get_pin("d:5:p")
 servo4 = board.get_pin("d:9:p")
@@ -60,6 +61,7 @@ hand = mp_hands.Hands(max_num_hands=1)
 mp_drawing = mp.solutions.drawing_utils
 
 # Low-pass filter initialization
+servo_position0 = 0.0
 servo_position1 = 0.0
 servo_position2 = 0.0
 servo_position3 = 0.0
@@ -78,6 +80,8 @@ while True:
         if result.multi_hand_landmarks:
             for hand_landmarks in result.multi_hand_landmarks:
                 # Extract landmarks for the index finger
+                thumb_tip = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
+                thumb_mcp = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_MCP]
                 index_tip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
                 index_mcp = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_MCP]
                 middle_tip = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP]
@@ -86,16 +90,20 @@ while True:
                 ring_mcp = hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_MCP]
                 pinky_tip = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP]
                 pinky_mcp = hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_MCP]
+                print(f'Thumb tip is {thumb_tip} and thumb mcp is {thumb_mcp}')
 
-                # Control servo1 with the index finger
-                if index_tip.y < index_mcp.y:
-                    target_position1 = 0.0  # Move servo to its original position
+
+                # Control servo0 with the index finger
+                if thumb_tip.y < thumb_mcp.y:
+                    target_position0 = 0.0  # Move servo to its original position
+                    print(True)
                 else:
-                    target_position1 = 1.0  # Move servo to a different position
+                    target_position0 = 1.0  # Move servo to a different position
 
                 # Apply low-pass filter to smooth the transition
-                servo_position1 = alpha * target_position1 + (1 - alpha) * servo_position1
-                servo1.write(servo_position1)
+                servo_position0 = alpha * target_position0 + (1 - alpha) * servo_position0
+                servo0.write(servo_position0)
+
                 # Control servo1 with the index finger
                 if index_tip.y < index_mcp.y:
                     target_position1 = 0.0  # Move servo to its original position
@@ -145,7 +153,7 @@ while True:
 
         # Calculate and print the loop execution time
         loop_time = time.time() - start_time
-        print(f"Loop execution time: {loop_time:.4f} seconds")
+        # print(f"Loop execution time: {loop_time:.4f} seconds")
 
         if cv.waitKey(1) == ord('d'):
             break
