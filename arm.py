@@ -94,7 +94,7 @@ while True:
 
 
                 # Control servo0 with the index finger
-                if thumb_tip.y < thumb_mcp.y:
+                if thumb_tip.x < thumb_mcp.x:
                     target_position0 = 0.0  # Move servo to its original position
                     print(True)
                 else:
