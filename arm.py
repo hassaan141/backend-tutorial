@@ -108,7 +108,7 @@ while True:
                 if index_tip.y < index_mcp.y:
                     target_position1 = 0.0  # Move servo to its original position
                 else:
-                    target_position1 = 1.0  # Move servo to a different position
+                    target_position1 = 0.9  # Move servo to a different position
 
                 # Apply low-pass filter to smooth the transition
                 servo_position1 = alpha * target_position1 + (1 - alpha) * servo_position1
